@@ -1,0 +1,90 @@
+@mixin gridminix($screaninfix, $numOfColum, $screnBreakPoint) {
+    .container {
+      width: 100%;
+    }
+    
+    .row {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap; 
+      padding: 15px;
+      
+      
+      
+    }
+    h2{
+        color: rgb(103, 29, 29);
+
+    }
+    .firt-img img{
+        width:100%;
+        height: 75%;
+    }
+    img{
+        width: 250px;
+        height: 150px;  
+    }
+    ul{
+        display: flex;
+        justify-content: space-around;
+
+    }
+    li{
+        list-style: none;
+        border: 1px solid darkblue;
+        background-color: lightblue;
+        border-radius: 10px 1px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    footer{
+        background-color: lightblue;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+        height: 100px
+
+        
+    }
+   
+  
+    @if $screaninfix == "" {
+      @media all and (min-width: $screnBreakPoint) {
+        .show {
+          display: block !important;
+        }
+        .hidden {
+          display: none !important;
+        }
+  
+        @for $i from 1 through $numOfColum {
+          .col-#{$i} {
+            width: percentage($i / $numOfColum);
+          }
+        }
+      }
+    } @else {
+      @media all and (min-width: $screnBreakPoint) {
+        @for $i from 1 through $numOfColum {
+          .col-#{$screaninfix}-#{$i} {
+            width: percentage($i / $numOfColum);
+          }
+        }
+        .container {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  @include gridminix("", 12, 0px);
+  @include gridminix(sm, 12, 576px);
+  @include gridminix(md, 12, 768px);
+  @include gridminix(lg, 12, 992px);
+  @include gridminix(xl, 12, 1200px);
+  @include gridminix(xxl, 12, 1400px);
+  .left-col{
+    margin-left: 10px;
+    
+  }  
